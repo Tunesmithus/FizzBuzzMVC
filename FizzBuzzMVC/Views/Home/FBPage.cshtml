@@ -1,0 +1,77 @@
+﻿@model FizzBuzzMVC.Models.FizzBuzz
+
+<div class="container col-xxl-8 px-4 py-5 mt-5">
+    <div class="row gy-2 h-100 row-cols-md-2 row-cols-1">
+        <div class="col border-2 border-end">
+            <h1 class="font-weight-bold lh-1 mb-3">Fizz Buzz</h1>
+            <h4 class="lead">
+                This application will consider the two numbers entered.  For each number between 1 and 100
+                it will print FIZZ for the numbers that are divisible by the first number.  BUZZ will be printed
+                for the numbers divisible by the second number.  FIZZBUZZ for the numbers divisible by both and
+                simply print the number if it is not divisible by either.
+            </h4>
+            <h2 class="mt-5 border-2 border-bottom">Instructions</h2>
+            <p>
+                Enter two numbers.  The first number will be used to evaluate FIZZ.
+                The second number will be used to evaluate BUZZ and FIZZBUZZ will be
+                determined based on the combination of the two numbers.
+            </p>
+        </div>
+
+        <div class="col">
+            <div>
+                @*Form goes here*@
+                <form class="row gy-2 gx-3" asp-action="FBPage" asp-controller="Home" method="post">
+                    <div>
+                        <h4>Enter Numbers</h4>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="col">
+                                <label asp-for="FizzValue" class="form-label fw-bold"></label>
+                                <input asp-for="FizzValue" type="number" class="form-control" value="@Model.FizzValue" placeholder="Enter Fizz" />
+                            </div>
+                        </div>
+                        <div class="col">
+
+                            <div class="col">
+                                <label asp-for="BuzzValue" class="form-label fw-bold"></label>
+                                <input asp-for="BuzzValue" type="number" class="form-control" value="@Model.BuzzValue" placeholder="Enter Buzz" />
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex align-items-center justify-content-start justify-content-lg-end mt-2">
+                            <button id="btnSubmit" type="submit" class="btn btn-dark">
+                                Fizz Buzz Test
+                            </button>
+                        </div>
+
+                    </div>
+
+                </form>
+
+                <h2 class="mt-5 border-bottom border-2">Results</h2>
+                <div class="table-responsive">
+                    @if (Model.Results.Count > 0)
+                    {
+                        <table class="border table-striped table table-hover table-dark">
+                            <thead>
+                                <tr><th colspan="5">Fizz Buzz Results</th></tr>
+                            </thead>
+                            @for (int i = 0; i < Model.Results.Count(); i += 5)
+                            {
+                                <tr>
+                                    <td>@Model.Results[i]</td>
+                                    <td>@Model.Results[i+1]</td>
+                                    <td>@Model.Results[i+2]</td>
+                                    <td>@Model.Results[i+3]</td>
+                                    <td>@Model.Results[i+4]</td>
+                                </tr>
+                            }
+                        </table>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
